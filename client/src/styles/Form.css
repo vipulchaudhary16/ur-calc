@@ -1,0 +1,18 @@
+.save-calc-form {
+    display: flex;
+    gap: 1rem;
+}
+
+.save-calc-form input {
+    padding: 0.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.639);
+    width: 25%;
+}
+
+.save-calc-form button {
+    padding: 0.5rem 2.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.639);
+    background-color: #414bb2;
+    color: white;
+    cursor: pointer;
+}

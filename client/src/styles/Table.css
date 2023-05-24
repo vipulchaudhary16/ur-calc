@@ -1,0 +1,15 @@
+.history-table td {
+    padding: 5px 15px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.history-table tr {
+    border-bottom: 1px solid black;
+}
+
+.history-table .action-icon {
+    cursor: pointer;
+}

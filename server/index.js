@@ -23,6 +23,7 @@ mongoose.connect(URL).then(() => {
 
 //routes
 app.use("/api/auth", require("./routes/Auth"))
+app.use("/api/calculation", require("./routes/Calculation"))
 
 //listening server
 app.listen(PORT, () => {

@@ -1,18 +1,12 @@
 import React from 'react'
 import { HistoryRow } from './HistoryRow'
 import "../styles/Table.css"
+import { useContext } from 'react'
+import { CalculationContext } from '../contexts/calculation.context'
 
 export const CalculatorHistory = () => {
-    const data = [
-        {
-            name: "xxxddd",
-            calculation: "1-2+9+47"
-        },
-        {
-            name: "xxxddd",
-            calculation: "1-2+9+47"
-        }
-    ]
+    const { calculationHistory } = useContext(CalculationContext)
+
     return (
         <div className='history-table'>
             <h1>Your Calculations</h1>
@@ -25,7 +19,7 @@ export const CalculatorHistory = () => {
                 </thead>
                 <tbody>
                     {
-                        data.map((row) => <HistoryRow data={row} />)
+                        calculationHistory.map((row) => <HistoryRow data={row} />)
                     }
                 </tbody>
             </table>

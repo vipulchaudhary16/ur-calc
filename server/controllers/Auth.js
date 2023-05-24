@@ -41,15 +41,10 @@ const logIn = async (req, res) => {
             const compareResult = await bcrypt.compare(password, user.password)
             if (compareResult) {
                 //create payload for token
-                const { firstName, lastName, email, isActive, roles } = user
                 const payload = {
                     user: {
                         userId: user._id, 
-                        firstName,
-                        lastName,
                         email,
-                        isActive,
-                        roles
                     }
                 }
                 //sign token with payload

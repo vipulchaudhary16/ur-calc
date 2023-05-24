@@ -6,7 +6,7 @@ const verifyToken = (req, res, next) => {
     const token = req.header("token");
     //if header does not have token
     if (!token) {
-        res.status(401).send({ message: "Invalid token" });
+        res.status(401).send({ message: "please pass token" });
         return
     }
     try {

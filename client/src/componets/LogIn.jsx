@@ -1,22 +1,28 @@
 import React, { useContext, useState } from 'react'
 import { AuthContext } from '../contexts/auth.context'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export const LogIn = () => {
     const [user, setUser] = useState({
         email: "",
         password: ""
     })
-    const { logIn } = useContext(AuthContext)
-    const handleSubmit = (e) => {
+    const { logIn, loadUser } = useContext(AuthContext)
+    const navigate = useNavigate()
+
+    const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            logIn(user).then((res) => {
-                localStorage.setItem('token', res.data.token)
-                alert(res.data.message)
-            }).catch((err) => {
-                alert(JSON.parse(err.request.response).message)
-            })
+            const res = await logIn(user)
+            if (!res.ok) {
+                const jsonRes = await res.json()
+                alert(jsonRes.message)
+            } else {
+                const jsonRes = await res.json()
+                localStorage.setItem('token', jsonRes.token)
+                loadUser()
+                navigate("/")
+            }
         } catch (error) {
             alert("Internal server error")
         }
@@ -27,11 +33,12 @@ export const LogIn = () => {
         setUser({ ...user, [name]: event.target.value })
     }
     return (
-        <div className="container">
+        <div className="form-container">
+            <h1>Log In into your account</h1>
             <form onSubmit={(e) => handleSubmit(e)}>
                 <div className="input-container">
                     <span>
-                        <label htmlFor="Email">Name</label>
+                        <label htmlFor="Email">Email</label>
                     </span>
                     <input type="email" id='email' name='email' placeholder='Enter your email' onChange={(e) => handleChange(e)} />
                 </div>

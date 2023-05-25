@@ -18,8 +18,12 @@ export const Calculator = () => {
     }
 
     const calculate = () => {
-        const result = eval(calculation)
-        setResult(result)
+        try {
+            const result = eval(calculation)
+            setResult(result)
+        } catch (error) {
+            setResult("ERROR")
+        }
     }
 
     const clearDisplay = () => {

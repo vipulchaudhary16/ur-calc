@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { AuthContext } from '../contexts/auth.context'
 import "../styles/Form.css"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export const SignUp = () => {
     const [user, setUser] = useState({
@@ -10,14 +10,19 @@ export const SignUp = () => {
         password: ""
     })
     const { signUp } = useContext(AuthContext)
-    const handleSubmit = (e) => {
+    const navigate = useNavigate()
+
+    const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            signUp(user).then((res) => {
-                alert(res.data.message)
-            }).catch((err) => {
-                alert(JSON.parse(err.request.response).message)
-            })
+            const res = await signUp(user)
+            console.log(res)
+            if (!res.ok) {
+                const jsonRes = await res.json()
+                alert(jsonRes.message)
+            } else {
+                navigate("/login")
+            }
         } catch (error) {
             alert("Internal server error")
         }
@@ -29,8 +34,8 @@ export const SignUp = () => {
     }
 
     return (
-        <div className="container">
-
+        <div className="form-container">
+            <h1>Create new account</h1>
             <form onSubmit={(e) => handleSubmit(e)}>
                 <div className="input-container">
                     <span>
@@ -52,8 +57,7 @@ export const SignUp = () => {
                 </div>
                 <button type='submit' className='btn submit-btn'>Sign up</button>
             </form>
-            <Link to={"/login"}>Already have Account?</Link>
-
+            <Link to={"/login"}>Already have an Account?</Link>
         </div>
     )
 }

@@ -23,9 +23,7 @@ export const HistoryRow = ({ data }) => {
         const are_you_sure = window.confirm("Are you sure?")
         if (!are_you_sure) return
         try {
-            const res = await deleteCalculation(data._id)
-            const jsonRes = await res.json()
-            alert(jsonRes.message)
+            await deleteCalculation(data._id)
             loadCalculationHistory()
         } catch (error) {
             alert("Internal server error")

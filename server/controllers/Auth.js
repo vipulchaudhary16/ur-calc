@@ -13,6 +13,7 @@ const signUp = async (req, res) => {
             return;
         }
         const { name, email, password } = req.body
+        console.log(name, email, password)
         //password hashing
         const salt = await bcrypt.genSalt()
         const hashedPassword = await bcrypt.hash(password, salt)
@@ -27,7 +28,7 @@ const signUp = async (req, res) => {
         res.status(200).json({ message: "Account created" })
     } catch (error) {
         //internal server error
-        res.status(500).json({'message' : "Internal Server error"})
+        res.status(500).json({ 'message': "Internal Server error" })
         console.log(error)
     }
 }
@@ -43,7 +44,7 @@ const logIn = async (req, res) => {
                 //create payload for token
                 const payload = {
                     user: {
-                        userId: user._id, 
+                        userId: user._id,
                         email,
                     }
                 }
@@ -60,9 +61,25 @@ const logIn = async (req, res) => {
         }
     } catch (error) {
         //internal server error
-        res.status(500).json({'message' : "Internal Server error"})
+        res.status(500).json({ 'message': "Internal Server error" })
         console.log(error)
     }
 }
 
-module.exports = {  signUp, logIn }
+const getUser = async (req, res) => {
+    try {
+        const { userId } = req.user
+        const user = await User.findById(userId, { password: false, _id: false })
+        if (user) {
+            res.json(user)
+        } else {
+            res.status(404).json({ message: "User does not exists" })
+        }
+    } catch (error) {
+        //internal server error
+        res.status(500).json({ 'message': "Internal Server error" })
+        console.log(error)
+    }
+}
+
+module.exports = { signUp, logIn, getUser }

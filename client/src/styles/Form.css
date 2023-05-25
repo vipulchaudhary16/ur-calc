@@ -6,7 +6,7 @@
 .save-calc-form input {
     padding: 0.5rem;
     border: 1px solid rgba(0, 0, 0, 0.639);
-    width: 25%;
+    width: 40%;
 }
 
 .save-calc-form button {
@@ -15,4 +15,43 @@
     background-color: #414bb2;
     color: white;
     cursor: pointer;
+}
+
+/* LOGIN FORM */
+.form-container {
+    width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin-top: 5rem;
+}
+
+.input-container {
+    margin-bottom: 10px;
+}
+
+.input-container span {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.input-container input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.btn {
+    background-color: #000;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.submit-btn {
+    margin-top: 10px;
 }

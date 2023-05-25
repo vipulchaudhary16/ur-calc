@@ -1,7 +1,27 @@
 .container {
   display: grid;
-  width: 70%;
   grid-template-columns: 1fr 1fr;
   padding: 1rem;
   margin: 0 auto;
+}
+
+.save-form-container h2 {
+  margin: 1rem 0;
+}
+
+h1 {
+  margin-bottom: 1rem;
+}
+
+
+
+/* Mobile CSS */
+@media screen and (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  h1{
+    margin-top: 1rem;
+  }
 }

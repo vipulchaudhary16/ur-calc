@@ -19,7 +19,7 @@ export const CalculatorHistory = () => {
                 </thead>
                 <tbody>
                     {
-                        calculationHistory.map((row) => <HistoryRow data={row} />)
+                        calculationHistory.length > 0 && calculationHistory.map((row) => <HistoryRow data={row} />)
                     }
                 </tbody>
             </table>

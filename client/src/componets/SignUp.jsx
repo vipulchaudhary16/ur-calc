@@ -16,7 +16,6 @@ export const SignUp = () => {
         e.preventDefault()
         try {
             const res = await signUp(user)
-            console.log(res)
             if (!res.ok) {
                 const jsonRes = await res.json()
                 alert(jsonRes.message)

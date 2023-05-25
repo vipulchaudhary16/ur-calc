@@ -8,14 +8,14 @@ import { CalculationContext } from '../contexts/calculation.context'
 
 export const HistoryRow = ({ data }) => {
     const { name, calculation } = data
-    const [result, setResult] = useState("")
-    const { deleteCalculation, loadCalculationHistory, setCalculation } = useContext(CalculationContext)
+    const [evaluation, setEvaluation] = useState("")
+    const { deleteCalculation, loadCalculationHistory, setCalculation, setResult } = useContext(CalculationContext)
 
     useEffect(() => {
         try {
-            setResult(eval(calculation))
+            setEvaluation(eval(calculation))
         } catch (error) {
-            setResult("error")
+            setEvaluation("error")
         }
     }, [])
 
@@ -31,6 +31,7 @@ export const HistoryRow = ({ data }) => {
     }
 
     const handleRepeat = () => {
+        setResult("")
         setCalculation(calculation)
     }
 
@@ -39,7 +40,7 @@ export const HistoryRow = ({ data }) => {
             <tr>
                 <td>{name}</td>
                 <td>{calculation}</td>
-                <td>{result}</td>
+                <td>{evaluation}</td>
                 <td className='action-icon' onClick={() => handleDelete()}><RiDeleteBin6Line /></td>
                 <td className='action-icon' onClick={() => handleRepeat()}><RiRepeatLine /></td>
             </tr>

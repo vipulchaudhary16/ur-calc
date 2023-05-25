@@ -1,15 +1,13 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "../styles/Calculator.css"
 import { CalculationContext } from '../contexts/calculation.context'
 export const Calculator = () => {
-    const { calculation, setCalculation } = useContext(CalculationContext)
-    const [result, setResult] = useState("")
+    const { calculation, setCalculation, result, setResult } = useContext(CalculationContext)
 
     const handleChange = (e) => {
         let newString
         if (result) {
             newString = result + (e.target.value)
-            console.log("here")
         } else {
             newString = calculation + (e.target.value)
         }
@@ -30,6 +28,7 @@ export const Calculator = () => {
         setCalculation("")
         setResult("")
     }
+
     return (
         <>
             <h1>Calculator</h1>

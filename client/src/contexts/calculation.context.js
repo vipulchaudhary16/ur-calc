@@ -4,6 +4,8 @@ import { useEffect } from "react";
 export const CalculationContext = createContext({
     calculation: String,
     calculationHistory: [],
+    result: 0,
+    setResult : () => {},
     setCalculation: () => { },
     addCalculation: () => { },
     deleteCalculation: () => { },
@@ -13,11 +15,8 @@ export const CalculationContext = createContext({
 export const CalculationProvider = ({ children }) => {
     const API = process.env.REACT_APP_BACKEND
     const [calculation, setCalculation] = useState('')
+    const [result, setResult] = useState(0)
     const [calculationHistory, setCalculationHistory] = useState([])
-
-    useEffect(() => {
-        loadCalculationHistory()
-    }, [])
 
     const addCalculation = async (data) => {
         return await fetch(`${API}/api/calculation`, {
@@ -51,7 +50,7 @@ export const CalculationProvider = ({ children }) => {
         setCalculationHistory(await data.json())
     }
 
-    const value = { addCalculation, deleteCalculation, calculation, setCalculation, calculationHistory , loadCalculationHistory}
+    const value = { addCalculation, deleteCalculation, calculation, setCalculation, calculationHistory , loadCalculationHistory, result, setResult}
     return <CalculationContext.Provider value={value} >
         {children}
     </CalculationContext.Provider>

@@ -15,7 +15,6 @@ export const AuthProvider = ({ children }) => {
         localStorage.getItem('token') && loadUser()
     }, [])
 
-    console.log(user)
 
     const signUp = async (user) => {
         return await fetch(API + "/api/auth/signup", {
@@ -50,7 +49,6 @@ export const AuthProvider = ({ children }) => {
             return
         }
         setUser(await res.json())
-        console.log(user)
     }
 
     const value = { signUp, logIn, loadUser, user }

@@ -36,7 +36,6 @@ export const HistoryRow = ({ data }) => {
     }
 
     return (
-        <>
             <tr>
                 <td>{name}</td>
                 <td>{calculation}</td>
@@ -44,6 +43,5 @@ export const HistoryRow = ({ data }) => {
                 <td className='action-icon' onClick={() => handleDelete()}><RiDeleteBin6Line /></td>
                 <td className='action-icon' onClick={() => handleRepeat()}><RiRepeatLine /></td>
             </tr>
-        </>
     )
 }

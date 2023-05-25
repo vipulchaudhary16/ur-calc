@@ -8,7 +8,7 @@ import { AuthContext } from '../contexts/auth.context'
 export const CalculatorHistory = () => {
     const { calculationHistory, loadCalculationHistory } = useContext(CalculationContext)
     const { user } = useContext(AuthContext)
-
+    
     useEffect(() => {
         user && loadCalculationHistory()
     }, [])

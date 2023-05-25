@@ -12,12 +12,12 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
 
     useEffect(() => {
-        localStorage.getItem('token') && loadUser()
+        if (localStorage.getItem('token')) loadUser();
     }, [])
 
 
     const signUp = async (user) => {
-        return await fetch(API + "/api/auth/signup", {
+        return await fetch(`${API}/api/auth/signup`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     const logIn = async (user) => {
-        return await fetch(API + "/api/auth/login", {
+        return await fetch(`${API}/api/auth/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     const loadUser = async () => {
-        const res = await fetch(API + "/api/auth/get-user", {
+        const res = await fetch(`${API}/api/auth/get-user`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

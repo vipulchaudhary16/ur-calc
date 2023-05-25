@@ -16,11 +16,11 @@ export const SignUp = () => {
         e.preventDefault()
         try {
             const res = await signUp(user)
-            if (!res.ok) {
+            if (res.ok) {
+                navigate("/login")
+            } else {
                 const jsonRes = await res.json()
                 alert(jsonRes.message)
-            } else {
-                navigate("/login")
             }
         } catch (error) {
             alert("Internal server error")

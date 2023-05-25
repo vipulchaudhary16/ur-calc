@@ -1,11 +1,10 @@
 import { createContext, useState } from "react";
-import { useEffect } from "react";
 
 export const CalculationContext = createContext({
     calculation: String,
     calculationHistory: [],
     result: 0,
-    setResult : () => {},
+    setResult: () => { },
     setCalculation: () => { },
     addCalculation: () => { },
     deleteCalculation: () => { },
@@ -50,7 +49,16 @@ export const CalculationProvider = ({ children }) => {
         setCalculationHistory(await data.json())
     }
 
-    const value = { addCalculation, deleteCalculation, calculation, setCalculation, calculationHistory , loadCalculationHistory, result, setResult}
+    const value = {
+        addCalculation,
+        deleteCalculation,
+        calculation,
+        setCalculation,
+        calculationHistory,
+        loadCalculationHistory,
+        result,
+        setResult
+    }
     return <CalculationContext.Provider value={value} >
         {children}
     </CalculationContext.Provider>

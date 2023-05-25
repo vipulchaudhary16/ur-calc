@@ -5,12 +5,12 @@ import { Home } from './componets/Home';
 import { SignUp } from './componets/SignUp';
 import { Navbar } from './componets/Navbar';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <Navbar />
       <Routes>
-          <Route exact path='/' element={<Home />} />
+        <Route exact path='/' element={<Home />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/login' element={<LogIn />} />
       </Routes>

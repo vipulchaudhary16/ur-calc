@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import "../styles/Calculator.css"
 import { CalculationContext } from '../contexts/calculation.context'
+
 export const Calculator = () => {
     const { calculation, setCalculation, result, setResult } = useContext(CalculationContext)
 
